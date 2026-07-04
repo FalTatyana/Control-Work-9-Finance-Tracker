@@ -32,7 +32,7 @@ const Header = () => {
             </li>
 
             <li className="nav-item">
-              <NavLink to="/add" className="btn btn-outline-success">
+              <NavLink to="/add-transaction" className="btn btn-outline-success">
                 Add transaction
               </NavLink>
             </li>

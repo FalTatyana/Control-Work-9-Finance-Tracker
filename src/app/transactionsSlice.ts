@@ -27,8 +27,6 @@ export const fetchTransactions = createAsyncThunk(
       "/tracker/transactions.json"
     );
     const data = response.data;
-
-    console.log('data', data);
     
     if (!data) {
       return [];
@@ -48,6 +46,29 @@ export const deleteTransaction = createAsyncThunk(
   async (id: string) => {
     await axiosApi.delete(`/tracker/transactions/${id}.json`);
     return id;
+  }
+);
+
+export const addTransaction = createAsyncThunk(
+  "transaction/addTransaction",
+  async (transaction: Omit<Transaction, "id">) => {
+    const response = await axiosApi.post(`/tracker/transactions.json`, transaction);
+
+    return {
+      id: response.data.name,
+      ...transaction,
+    };
+  }
+);
+
+export const editTransaction = createAsyncThunk(
+  "transaction/editTransction",
+  async (transaction: Transaction) => {
+    const { id, ...transactionData } = transaction;
+
+    await axiosApi.put(`/tracker/categories/${id}.json`, transactionData);
+
+    return transaction;
   }
 );
 
@@ -77,6 +98,31 @@ const transactionSlice = createSlice({
       toast.info("Success deleted");
     });
     builder.addCase(deleteTransaction.rejected, (state) => {
+      state.loading = false;
+      toast.error("Success Denied");
+    });
+    builder.addCase(addTransaction.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(addTransaction.fulfilled, (state) => {
+      state.loading = false;
+      toast.success("Categorie added");
+    });
+    builder.addCase(addTransaction.rejected, (state) => {
+      state.loading = false;
+      toast.error("Success Denied");
+    });
+    builder.addCase(editTransaction.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(editTransaction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.transactions = state.transactions.map((categorie) =>
+        categorie.id === action.payload.id ? action.payload : categorie
+      );
+      toast.success("Categorie updated");
+    });
+    builder.addCase(editTransaction.rejected, (state) => {
       state.loading = false;
       toast.error("Success Denied");
     });

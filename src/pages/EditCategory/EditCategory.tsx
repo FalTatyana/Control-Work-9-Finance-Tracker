@@ -9,14 +9,13 @@ import { fetchCategories } from "../../app/categoriesSlice";
 const EditCategory = () => {
 
   const { id } = useParams();
+  const dispatch = useDispatch<AppDispatch>();
   const categories = useSelector((state: RootState) => state.categories.categories);
   const categoryToEdit = categories.find(c => c.id === id);
 
   if (!categoryToEdit) {
     return <Spinner />;
   }
-
-  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     if (!categories.length) {

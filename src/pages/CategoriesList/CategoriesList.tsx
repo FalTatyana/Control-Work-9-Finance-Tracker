@@ -11,6 +11,7 @@ const CategoriesList = () => {
   const categories = useSelector(
     (state: RootState) => state.categories.categories
   );
+
   const loading = useSelector((state: RootState) => state.categories.loading);
 
   useEffect(() => {
