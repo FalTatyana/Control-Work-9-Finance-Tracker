@@ -32,7 +32,7 @@ const CategoriesList = () => {
         <NavLink to={'/add-category'} className="btn btn-outline-primary">Add categorie</NavLink>
       </div>
       {categories.map((cat) => (
-        <CategoryCard key={cat.id} name={cat.name} type={cat.type} onDelete={() => handleDelete(cat.id)} />
+        <CategoryCard key={cat.id} name={cat.name} type={cat.type} onDelete={() => handleDelete(cat.id)} id={cat.id} />
       ))}
     </>
   );

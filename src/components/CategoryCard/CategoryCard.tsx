@@ -8,6 +8,7 @@ interface Props {
 }
 
 const CategoryCard = ({ name, type, onDelete, id }: Props) => {
+  
   return (
     <div className="card mb-3" style={{ maxWidth: 700 }}>
       <div className="card-body d-flex justify-content-between align-items-center">
@@ -17,7 +18,7 @@ const CategoryCard = ({ name, type, onDelete, id }: Props) => {
           className="card-text mb-0 me-5"
           style={{ color: type === "Income" ? "green" : "#dc3545" }}
           >{type}</p>
-          <NavLink to={`/edit-category/${id}`} className="btn btn-outline-primary me-2">
+          <NavLink to={`/categories/edit-category/${id}`} className="btn btn-outline-primary me-2">
             <i className="bi bi-pencil-square"></i>
           </NavLink>
           <button onClick={onDelete} className="btn btn-outline-danger">

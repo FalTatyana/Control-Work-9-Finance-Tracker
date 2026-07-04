@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path={"/categories"} element={<CategoriesList />} />
         <Route path={"/add-category"} element={<AddCategory />} />
-        <Route path={"/edit-category/:id"} element={<EditCategory />} />
+        <Route path={"/categories/edit-category/:id"} element={<EditCategory />} />
       </Routes>
     </Layout>
   );
