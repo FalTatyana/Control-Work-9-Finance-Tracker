@@ -6,7 +6,7 @@ import {
   addCategorie,
   fetchCategories,
   type Categorie,
-} from "../../app/categorysSlice";
+} from "../../app/categoriesSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -45,7 +45,7 @@ const FormCategory = ({ isEdit, categorie }: Props) => {
     if (isEdit) {
       await dispatch(editCategorie(form));
       await dispatch(fetchCategories());
-      navigate("/categories");
+      navigate("/tracker/categories");
       return;
     }
 
@@ -61,7 +61,7 @@ const FormCategory = ({ isEdit, categorie }: Props) => {
 
     await dispatch(addCategorie(newCategory));
     await dispatch(fetchCategories());
-    navigate("/categories");
+    navigate("/tracker/categories");
   };
 
   return (

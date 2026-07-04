@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../app/store";
 import Spinner from "../../components/Spinner/Spinner";
 import { useEffect } from "react";
-import { fetchCategories } from "../../app/categorysSlice";
+import { fetchCategories } from "../../app/categoriesSlice";
 
 const EditCategory = () => {
 

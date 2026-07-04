@@ -22,7 +22,7 @@ export const fetchCategories = createAsyncThunk(
   "categories/fetchAll",
   async () => {
     const response = await axiosApi.get<Record<string, Categorie>>(
-      "/categories.json"
+      "/tracker/categories.json"
     );
     const data = response.data;
 
@@ -42,7 +42,7 @@ export const fetchCategories = createAsyncThunk(
 export const deleteCategorie = createAsyncThunk(
   "categorie/deleteCategorie",
   async (id: string) => {
-    await axiosApi.delete(`/categories/${id}.json`);
+    await axiosApi.delete(`/tracker/categories/${id}.json`);
     return id;
   }
 );
@@ -50,7 +50,7 @@ export const deleteCategorie = createAsyncThunk(
 export const addCategorie = createAsyncThunk(
   "categorie/addCategory",
   async (categorie: Omit<Categorie, "id">) => {
-    const response = await axiosApi.post(`/categories.json`, categorie);
+    const response = await axiosApi.post(`/tracker/categories.json`, categorie);
 
     return {
       id: response.data.name,
@@ -64,7 +64,7 @@ export const editCategorie = createAsyncThunk(
   async (categorie: Categorie) => {
     const { id, ...categorieData } = categorie;
 
-    await axiosApi.put(`/categories/${id}.json`, categorieData);
+    await axiosApi.put(`/tracker/categories/${id}.json`, categorieData);
 
     return categorie;
   }

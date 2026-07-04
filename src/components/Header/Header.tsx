@@ -26,14 +26,14 @@ const Header = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto align-items-center">
             <li className="nav-item me-3">
-              <NavLink className="nav-link" to="/categories">
+              <NavLink className="nav-link" to="/tracker/categories">
                 Categories
               </NavLink>
             </li>
 
             <li className="nav-item">
               <NavLink to="/add" className="btn btn-outline-success">
-                Add
+                Add transaction
               </NavLink>
             </li>
           </ul>
