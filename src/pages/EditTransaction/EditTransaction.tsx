@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { Spinner } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchCategories } from "../../app/categoriesSlice";
 import type { AppDispatch, RootState } from "../../app/store";
 import FormTransaction from "../../components/FormTransaction/FormTransaction";
+import Spinner from "../../components/Spinner/Spinner";
 
 const EditTransaction = () => {
 

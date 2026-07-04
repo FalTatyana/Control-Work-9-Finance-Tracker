@@ -24,7 +24,7 @@ const TransactionCard = ({ name, summ, id, date, type, onDelete }: Props) => {
             {summ} KGS
           </p>
           <NavLink
-            to={`/categories/edit-category/${id}`}
+            to={`/edit-transaction/${id}`}
             className="btn btn-outline-primary me-2"
           >
             <i className="bi bi-pencil-square"></i>

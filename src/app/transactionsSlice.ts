@@ -66,7 +66,7 @@ export const editTransaction = createAsyncThunk(
   async (transaction: Transaction) => {
     const { id, ...transactionData } = transaction;
 
-    await axiosApi.put(`/tracker/categories/${id}.json`, transactionData);
+    await axiosApi.put(`/tracker/transactions/${id}.json`, transactionData);
 
     return transaction;
   }
@@ -106,7 +106,7 @@ const transactionSlice = createSlice({
     });
     builder.addCase(addTransaction.fulfilled, (state) => {
       state.loading = false;
-      toast.success("Categorie added");
+      toast.success("Transaction added");
     });
     builder.addCase(addTransaction.rejected, (state) => {
       state.loading = false;
@@ -120,7 +120,7 @@ const transactionSlice = createSlice({
       state.transactions = state.transactions.map((categorie) =>
         categorie.id === action.payload.id ? action.payload : categorie
       );
-      toast.success("Categorie updated");
+      toast.success("Transaction updated");
     });
     builder.addCase(editTransaction.rejected, (state) => {
       state.loading = false;

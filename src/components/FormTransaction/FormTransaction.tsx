@@ -52,17 +52,25 @@ const FormTransaction = ({ isEdit, transaction }: Props) => {
   const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+
     if (isEdit) {
+      const amount = Number(form.summ);
+      if (!form.name || !form.type || Number.isNaN(amount) || amount <= 0) {
+        toast.error("Enter all data");
+        return;
+      };
       await dispatch(editTransaction(form));
       await dispatch(fetchTransactions());
       navigate("/");
       return;
     }
 
-    if (!form.summ.trim() || !form.name.trim() || !form.type) {
+    const amount = Number(form.summ);
+    if (!form.name || !form.type || Number.isNaN(amount) || amount <= 0) {
       toast.error("Enter all data");
       return;
     }
+
 
     const newTransaction = {
       type: form.type,

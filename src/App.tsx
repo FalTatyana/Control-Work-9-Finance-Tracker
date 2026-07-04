@@ -5,6 +5,7 @@ import AddCategory from "./pages/AddCategory/AddCategory";
 import EditCategory from "./pages/EditCategory/EditCategory";
 import TransactionList from "./pages/TransactionList/TransactionList";
 import AddTransaction from "./pages/AddTransaction/AddTransaction";
+import EditTransaction from "./pages/EditTransaction/EditTransaction";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path={"/tracker/categories/edit-category/:id"} element={<EditCategory />} />
         <Route path={"/"} element={<TransactionList />} />
         <Route path={"/add-transaction"} element={<AddTransaction />} />
+        <Route path={"/edit-transaction/:id"} element={<EditTransaction />} />
       </Routes>
     </Layout>
   );
