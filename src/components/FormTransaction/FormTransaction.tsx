@@ -52,13 +52,12 @@ const FormTransaction = ({ isEdit, transaction }: Props) => {
   const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-
     if (isEdit) {
       const amount = Number(form.summ);
       if (!form.name || !form.type || Number.isNaN(amount) || amount <= 0) {
         toast.error("Enter all data");
         return;
-      };
+      }
       await dispatch(editTransaction(form));
       await dispatch(fetchTransactions());
       navigate("/");
@@ -70,7 +69,6 @@ const FormTransaction = ({ isEdit, transaction }: Props) => {
       toast.error("Enter all data");
       return;
     }
-
 
     const newTransaction = {
       type: form.type,
@@ -144,7 +142,11 @@ const FormTransaction = ({ isEdit, transaction }: Props) => {
         </span>
       </div>
 
-      <button type="submit" className="btn btn-primary">
+      <button
+        type="submit"
+        className="btn btn-primary"
+        disabled={!form.name || !form.summ || !form.type}
+      >
         {isEdit ? "Edit transaction" : "Add transaction"}
       </button>
     </form>

@@ -100,7 +100,11 @@ const FormCategory = ({ isEdit, categorie }: Props) => {
         </select>
       </div>
 
-      <button type="submit" className="btn btn-primary">
+      <button
+        type="submit"
+        className="btn btn-primary"
+        disabled={!form.name || !form.type}
+      >
         {isEdit ? "Edit category" : "Add category"}
       </button>
     </form>
