@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axiosApi from "../axiosApi";
+import { toast } from "react-toastify";
 
 export interface Categorie {
   id: string;
@@ -24,7 +25,6 @@ export const fetchCategories = createAsyncThunk(
       "/categories.json"
     );
     const data = response.data;
-    console.log("data", data);
 
     if (!data) {
       return [];
@@ -37,6 +37,14 @@ export const fetchCategories = createAsyncThunk(
 
     return result;
   }
+);
+
+export const deleteCategorie = createAsyncThunk(
+ "categorie/deleteCategorie",
+ async (id: string) => {
+   await axiosApi.delete(`/categories/${id}.json`);
+   return id;
+ }
 );
 
 const categoriesSlice = createSlice({
@@ -54,6 +62,18 @@ const categoriesSlice = createSlice({
     builder.addCase(fetchCategories.rejected, (state) => {
       state.loading = false;
     });
+    builder.addCase(deleteCategorie.pending, (state) => {
+     state.loading = true;
+   });
+   builder.addCase(deleteCategorie.fulfilled, (state, action) => {
+     state.categories = state.categories.filter((c) => c.id !== action.payload);
+     state.loading = false;
+     toast.info("Success deleted");
+   });
+   builder.addCase(deleteCategorie.rejected, (state) => {
+     state.loading = false;
+     toast.error("Success Denied");
+   });
   },
 });
 
